@@ -38,17 +38,20 @@ echo 	'<th>Categoria</th>';
 echo	'<th>Nombre</th>';
 echo	'<th>Precio</th>';
 echo '</tr>';
+echo '</table>';
 while ($i > 0){
 	$cadena_buscada = 'ero';
 	$posicion_coincidencia = strpos($articulos[$i-1]->nombre, $cadena_buscada);
 	if($posicion_coincidencia == true && $articulos[$i-1]->categoria == 'Navideños' && $articulos[$i-1]->precio >= 200 && $articulos[$i-1]->precio <= 400){
 		?>
-		<tr>
-			<td><?php echo $articulos[$i-1]->id?></td>
-			<td><?php echo $articulos[$i-1]->categoria?></td>
-			<td><?php echo $articulos[$i-1]->nombre?></td>
-			<td><?php echo $articulos[$i-1]->precio?></td>
-		</tr>
+		<li>
+			<tr>
+				<td><?php echo $articulos[$i-1]->id?></td>
+				<td><?php echo $articulos[$i-1]->categoria?></td>
+				<td><?php echo $articulos[$i-1]->nombre?></td>
+				<td><?php echo $articulos[$i-1]->precio?></td>
+			</tr>
+		</li>
 	<?php
 }
 	$i = $i - 1;
