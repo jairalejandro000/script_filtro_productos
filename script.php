@@ -30,7 +30,9 @@ $articulo1->categoria = $_POST["categoria"];
 $articulo1->nombre = $_POST["nombre"];
 $articulo1->precio = $_POST["precio"];*/
 $articulos = array($a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9,$a10);
-$i = count($articulos);
+$json = json_encode($articulos);
+echo "Arreglo de objetos convertido a JSON",'<br>',$json,'<br><br>';
+$decode = json_decode($json, true);
 echo '<table border="1">';
 echo '<tr>';
 echo 	'<th>Id</th>';
@@ -39,24 +41,22 @@ echo	'<th>Nombre</th>';
 echo	'<th>Precio</th>';
 echo '</tr>';
 echo '</table>';
-while ($i > 0){
+foreach($decode as $jsond){
 	$cadena_buscada = 'ero';
-	$posicion_coincidencia = strpos($articulos[$i-1]->nombre, $cadena_buscada);
-	if($posicion_coincidencia == true && $articulos[$i-1]->categoria == 'Navideños' && $articulos[$i-1]->precio >= 200 && $articulos[$i-1]->precio <= 400){
+	$posicion_coincidencia = strpos($jsond["nombre"], $cadena_buscada);
+	if($posicion_coincidencia == true && $jsond["categoria"] == 'Navideños' && $jsond["precio"] >= 200 && $jsond["precio"] <= 400){
 		?>
 		<li>
 			<tr>
-				<td><?php echo $articulos[$i-1]->id?></td>
-				<td><?php echo $articulos[$i-1]->categoria?></td>
-				<td><?php echo $articulos[$i-1]->nombre?></td>
-				<td><?php echo $articulos[$i-1]->precio?></td>
+				<td><?php echo $jsond["id"]?></td>
+				<td><?php echo $jsond["categoria"]?></td>
+				<td><?php echo $jsond["nombre"]?></td>
+				<td><?php echo $jsond["precio"]?></td>
 			</tr>
 		</li>
 	<?php
+	}
 }
-	$i = $i - 1;
-}
-echo '</table>';
 /*if(file_exists('datos.txt')){
 	$content = file_get_contents('datos.txt');
 	$decoded = json_decode($content);
